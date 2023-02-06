@@ -8,5 +8,10 @@
       {
         packages.marp-cli = pkgs.callPackage ./marp-cli.nix {};
         packages.default = self.packages.${system}.marp-cli;
+
+        apps.default = {
+          type = "app";
+          program = "${self.packages.${system}.marp-cli}/bin/marp";
+        };
       });
 }
