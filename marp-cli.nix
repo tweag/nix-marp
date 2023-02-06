@@ -13,4 +13,8 @@ mkYarnPackage {
     pug = "^3.0.2";
     pug-runtime = "^3.0.1";
   };
+  buildPhase = ''
+    export HOME=$(mktemp -d)
+    yarn --offline build
+  '';
 }
