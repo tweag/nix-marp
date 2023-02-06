@@ -1,0 +1,12 @@
+{
+  inputs.nixpkgs.url = "github:nixos/nixpkgs";
+  inputs.flake-utils.url = "github:numtide/flake-utils";
+
+  outputs = { flake-utils, nixpkgs, self, ... }:
+    flake-utils.lib.eachDefaultSystem (system:
+      let pkgs = nixpkgs.legacyPackages.${system}; in
+      {
+        packages.marp-cli = pkgs.callPackage ./marp-cli.nix {};
+        packages.default = self.packages.${system}.marp-cli;
+      });
+}
