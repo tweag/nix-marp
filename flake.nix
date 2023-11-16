@@ -6,7 +6,7 @@
     flake-utils.lib.eachDefaultSystem (system:
       let pkgs = nixpkgs.legacyPackages.${system}; in
       {
-        packages.marp-cli = pkgs.callPackage ./marp-cli.nix {};
+        packages.marp-cli = pkgs.callPackage ./marp-cli {};
         packages.default = self.packages.${system}.marp-cli;
 
         apps.default = {
